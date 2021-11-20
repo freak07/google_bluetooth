@@ -264,7 +264,7 @@ static int nitrous_proc_show(struct seq_file *m, void *v)
 			   (lpm->is_suspended ? "asleep" : "awake"));
 		break;
 	case PROC_TIMESYNC:
-		kfifo_out(&lpm->timestamp_queue, &timestamp, sizeof(ktime_t));
+		(void)kfifo_out(&lpm->timestamp_queue, &timestamp, sizeof(ktime_t));
 		seq_printf(m, "%lld", ktime_to_us(timestamp));
 		break;
 	default:
